@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bsommers/security-controls/schema/control-catalog.schema.json",
+  "title": "NistSp80053Rev5Upd1CoreCatalog",
+  "type": "object",
+  "required": ["standard_id", "title", "version", "source_url", "controls"],
+  "additionalProperties": false,
+  "properties": {
+    "standard_id": { "type": "string", "const": "NIST-SP-800-53-R5-UPD1" },
+    "title": { "type": "string", "minLength": 10 },
+    "version": { "type": "string", "minLength": 3 },
+    "source_url": { "type": "string", "const": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" },
+    "oscal_upstream_url": { "type": "string" },
+    "controls": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["id", "family", "title", "baselines", "outcome_summary", "parameters"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z]{2}-\\d+(\\(\\d+\\))?$" },
+          "base_control_id": { "type": "string", "pattern": "^[A-Z]{2}-\\d+$" },
+          "family": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "title": { "type": "string", "minLength": 3 },
+          "baselines": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["low", "moderate", "high", "privacy"] }
+          },
+          "outcome_summary": { "type": "string", "minLength": 20 },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["param_id", "label"],
+              "additionalProperties": false,
+              "properties": {
+                "param_id": { "type": "string" },
+                "label": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

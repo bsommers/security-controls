@@ -1,0 +1,77 @@
+{
+  "overlay_id": "COSIS-UC-GEN",
+  "use_case_id": "UC-GEN",
+  "title": "COSIS Overlay: Adapting and Using Generative SI – Assistant / Large Language Model (LLM)",
+  "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+  "provenance_tier": "nist_cosis_use_case_overlay",
+  "default_baseline": "moderate",
+  "cia_focus": ["confidentiality", "integrity", "availability", "privacy"],
+  "primary_risks": [
+    "Direct and indirect prompt injection via untrusted retrieved context or tool descriptions",
+    "Sensitive PII or secret exfiltration through model context windows and generated outputs",
+    "Unbounded token/payload consumption exhausting inference budgets or overflowing context",
+    "Ungrounded hallucinated outputs feeding operational or compliance decisions of record"
+  ],
+  "tailored_controls": [
+    {
+      "control_id": "AC-4",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Enforce tenant and classification boundaries between RAG retrieval stores, prompt context assembly, and model output channels so cross-tenant documents never enter shared context.",
+      "parameter_assignments": {
+        "ac-04_odp.01": "per-request stateless context isolation with explicit tenant filter predicates and zero shared global prompt caches"
+      },
+      "assessment_check": "Verify concurrent generative requests cannot read prior caller context or cross-tenant RAG chunks.",
+      "pattern_refs": ["MCP-006"]
+    },
+    {
+      "control_id": "SI-10",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Validate structured inputs, retrieved schemas, and metadata descriptions; strip or reject imperative prompt-injection directives embedded in external schemas and docstrings.",
+      "parameter_assignments": {
+        "si-10_odp.01": "JSON Schema 2020-12 strict validation plus AST/text scan blocking imperative prompt-injection directives"
+      },
+      "assessment_check": "Confirm untrusted inputs and tool/RAG metadata undergo deterministic schema and prompt-hygiene validation.",
+      "pattern_refs": ["MCP-004", "MCP-008"]
+    },
+    {
+      "control_id": "SC-5",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Bound prompt, retrieval, and structured response sizes across both collection cardinality and UTF-8 wire byte length so high-cardinality responses cannot exhaust context windows.",
+      "parameter_assignments": {
+        "sc-05_odp.01": "32,768-byte structured payload cap with Pass 1 list-cardinality slicing and Pass 2 UTF-8 string truncation"
+      },
+      "assessment_check": "Execute torture test with >3,000 short items and oversized Unicode payloads; verify wire output stays <= 32 KiB.",
+      "pattern_refs": ["MCP-003"]
+    },
+    {
+      "control_id": "PT-2",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Project upstream data responses down to explicit allowlisted high-signal fields, excluding unauthorized PII and raw catch-all dictionary dumps before LLM ingestion.",
+      "parameter_assignments": {
+        "pt-02_odp.01": "explicit x-mcp-fields projection allowlists with zero raw dict[str, Any] passthrough blobs"
+      },
+      "assessment_check": "Verify response schemas omit unapproved PII attributes and forbid unprojected catch-all maps.",
+      "pattern_refs": ["MCP-004", "MCP-007"]
+    },
+    {
+      "control_id": "AU-3",
+      "overlay_priority": "P2",
+      "ai_tailoring_guidance": "Emit structured audit records capturing model/assistant invocation metadata, correlation IDs, and outcome status while redacting bearer tokens, API keys, and raw PII.",
+      "parameter_assignments": {
+        "au-03_odp.01": "stderr JSON audit records with correlation ID, tool/route name, latency, status, and credential redaction"
+      },
+      "assessment_check": "Inspect emitted logs under happy and error paths to confirm zero plaintext secrets or stdout pollution.",
+      "pattern_refs": ["MCP-001", "MCP-008"]
+    },
+    {
+      "control_id": "CA-7",
+      "overlay_priority": "P2",
+      "ai_tailoring_guidance": "Continuously monitor generative assistant error rates, truncation frequency, and schema-validation rejections to detect prompt abuse or upstream contract drift.",
+      "parameter_assignments": {
+        "ca-07_odp.01": "continuous tracking of validation failures, payload-bounding triggers, and anomalous error spikes"
+      },
+      "assessment_check": "Verify telemetry surfaces truncation events and validation rejections per endpoint.",
+      "pattern_refs": ["MCP-003"]
+    }
+  ]
+}

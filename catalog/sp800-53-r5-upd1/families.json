@@ -1,0 +1,27 @@
+{
+  "standard_id": "NIST-SP-800-53-R5-UPD1",
+  "title": "Security and Privacy Controls for Information Systems and Organizations (Revision 5, Update 1)",
+  "source_url": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+  "families": [
+    { "code": "AC", "title": "Access Control" },
+    { "code": "AT", "title": "Awareness and Training" },
+    { "code": "AU", "title": "Audit and Accountability" },
+    { "code": "CA", "title": "Assessment, Authorization, and Monitoring" },
+    { "code": "CM", "title": "Configuration Management" },
+    { "code": "CP", "title": "Contingency Planning" },
+    { "code": "IA", "title": "Identification and Authentication" },
+    { "code": "IR", "title": "Incident Response" },
+    { "code": "MA", "title": "Maintenance" },
+    { "code": "MP", "title": "Media Protection" },
+    { "code": "PE", "title": "Physical and Environmental Protection" },
+    { "code": "PL", "title": "Planning" },
+    { "code": "PM", "title": "Program Management" },
+    { "code": "PS", "title": "Personnel Security" },
+    { "code": "PT", "title": "PII Processing and Transparency" },
+    { "code": "RA", "title": "Risk Assessment" },
+    { "code": "SA", "title": "System and Services Acquisition" },
+    { "code": "SC", "title": "System and Communications Protection" },
+    { "code": "SI", "title": "System and Information Integrity" },
+    { "code": "SR", "title": "Supply Chain Risk Management" }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "overlay_id": "COSIS-UC-AGENT-MULTI",
+  "use_case_id": "UC-AGENT-MULTI",
+  "title": "COSIS Overlay: Using SI Agent Systems (SI Agents) – Multi-Agent",
+  "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+  "provenance_tier": "nist_cosis_use_case_overlay",
+  "default_baseline": "high",
+  "cia_focus": ["integrity", "confidentiality", "availability"],
+  "primary_risks": [
+    "Inter-agent lateral movement and privilege escalation when a subagent is compromised via untrusted input",
+    "Agent reward hacking where worker agents mutate shared verification gates or orchestrator configs",
+    "Cross-agent state contamination or race conditions across shared workspaces and sessions",
+    "Cascading retry storms and unbounded fan-out across cooperative agent topologies"
+  ],
+  "tailored_controls": [
+    {
+      "control_id": "IA-9",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Authenticate and scope each agent role and shard independently using audience-restricted credentials rather than sharing a single omnipotent credential across the swarm.",
+      "parameter_assignments": {
+        "ia-09_odp.01": "per-shard / per-role audience-scoped credentials with zero cross-agent bearer token forwarding"
+      },
+      "assessment_check": "Verify read-only researcher subagents and domain shards do not possess admin shard credentials.",
+      "pattern_refs": ["MCP-001", "MCP-005"]
+    },
+    {
+      "control_id": "AC-6(1)",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Restrict write access to orchestrator policies, auth modules, and contract test suites strictly to the trusted host chassis; forbid worker agents from modifying their own evaluators.",
+      "parameter_assignments": {
+        "ac-06.01_odp.01": "Golden Template chassis (auth, server, contract gates, validator) locked :ro with SHA-256 tamper detection"
+      },
+      "assessment_check": "Simulate worker subagent mutating a locked gate file; verify TamperDetectionError aborts and restores pristine bytes.",
+      "pattern_refs": ["MCP-002"]
+    },
+    {
+      "control_id": "AC-4",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Enforce typed message schemas (outputSchema / structuredContent) and stateless sessionless boundaries (SEP-2567) across inter-agent handoffs so unvalidated blobs and globals never cross agents.",
+      "parameter_assignments": {
+        "ac-04_odp.01": "JSON Schema 2020-12 typed handoffs + isolated branch/worktree workspaces per concurrent writer agent"
+      },
+      "assessment_check": "Verify every inter-agent tool boundary publishes a non-null outputSchema and holds zero mutable module globals.",
+      "pattern_refs": ["MCP-003", "MCP-006"]
+    },
+    {
+      "control_id": "SI-7(1)",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Perform cryptographic SHA-256 integrity checks across locked chassis files before and after every delegated subagent turn or self-healing retry.",
+      "parameter_assignments": {
+        "si-07.01_odp.01": "pre-turn and post-turn SHA-256 workspace digest verification with fail-closed abort"
+      },
+      "assessment_check": "Confirm post-turn integrity check catches both file modification and unauthorized file creation in locked directories.",
+      "pattern_refs": ["MCP-002"]
+    },
+    {
+      "control_id": "AU-6",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Correlate audit logs across orchestrator and subagent invocations with trace/request identifiers to reconstruct multi-agent causal chains and detect cascade loops.",
+      "parameter_assignments": {
+        "au-06_odp.01": "structured JSON stderr telemetry with step/retry counters and RFC 9110 correlation header propagation"
+      },
+      "assessment_check": "Verify multi-stage orchestrator runs record per-iteration gate status and correlation metadata cleanly.",
+      "pattern_refs": ["MCP-007", "MCP-008"]
+    },
+    {
+      "control_id": "SC-5",
+      "overlay_priority": "P2",
+      "ai_tailoring_guidance": "Bound multi-agent retry counts (e.g., max 3 self-healing iterations), per-profile tool counts (<= 15), and response byte budgets to prevent cascading amplification.",
+      "parameter_assignments": {
+        "sc-05_odp.01": "max 3 self-healing retries + <= 15 active tools per agent role + 32 KiB response cap"
+      },
+      "assessment_check": "Confirm persistent validation failure terminates deterministically at the configured retry cap.",
+      "pattern_refs": ["MCP-003", "MCP-005"]
+    }
+  ]
+}

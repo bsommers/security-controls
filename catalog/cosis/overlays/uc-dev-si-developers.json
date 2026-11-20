@@ -1,0 +1,87 @@
+{
+  "overlay_id": "COSIS-UC-DEV",
+  "use_case_id": "UC-DEV",
+  "title": "COSIS Overlay: Security Controls for SI Developers (SP 800-218A Aligned)",
+  "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+  "provenance_tier": "nist_cosis_use_case_overlay",
+  "default_baseline": "moderate",
+  "cia_focus": ["integrity", "confidentiality", "availability"],
+  "primary_risks": [
+    "Compromised CI/CD actions, unpinned dependencies, or malicious build-time schema fetches (SSRF)",
+    "AI-synthesized code shipping with silent schema drift, weak error handling, or insecure defaults",
+    "Mutable baseline templates drifting out of sync with deployed agent/MCP servers",
+    "Unclear separation between authoritative specification rules and unverified LLM suggestions"
+  ],
+  "tailored_controls": [
+    {
+      "control_id": "SA-8",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Codify reusable secure design patterns (anti-passthrough auth, immutable chassis, dual-axis bounding, cycle-safe schemas) and bake them into Golden Templates rather than relying on ad-hoc developer prompts.",
+      "parameter_assignments": {
+        "sa-08_odp.01": "machine-validated MCP-001..MCP-008 secure design patterns enforced via Golden Template"
+      },
+      "assessment_check": "Verify Golden Template and pattern catalog pass automated schema and reference tests.",
+      "pattern_refs": ["MCP-001", "MCP-002", "MCP-003", "MCP-004"]
+    },
+    {
+      "control_id": "SA-11",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Gate every human and AI-generated commit through layered deterministic verification: static security lint (Ruff/Bandit), strict typechecking, AST hygiene, >= 85% branch coverage, and live transport probes.",
+      "parameter_assignments": {
+        "sa-11_odp.01": "5-gate deterministic verifier (ruff S+T20, mypy --strict, AST audit, pytest >= 85% branch coverage, live stdio probe)"
+      },
+      "assessment_check": "Confirm CI blocks merge if any verification gate or branch-coverage floor fails.",
+      "pattern_refs": ["MCP-008"]
+    },
+    {
+      "control_id": "SR-3",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Pin all third-party CI/CD GitHub Actions to full 40-character commit SHAs, enforce lockfiles (uv.lock), set permissions: contents: read, and disable credential persistence on checkout.",
+      "parameter_assignments": {
+        "sr-03_odp.01": "40-char SHA-pinned GitHub Actions + persist-credentials: false + cryptographic uv.lock"
+      },
+      "assessment_check": "Audit .github/workflows/*.yml to confirm zero mutable tag references and minimal workflow permissions.",
+      "pattern_refs": ["MCP-002"]
+    },
+    {
+      "control_id": "CM-2",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Maintain an immutable Golden Template baseline under version control and enforce lockstep parity between template chassis files and active reference implementations.",
+      "parameter_assignments": {
+        "cm-02_odp.01": "golden-template/ chassis synchronized with src/{auth,deps,server}.py and contract tests"
+      },
+      "assessment_check": "Verify template chassis files match active server infrastructure without unauthorized drift.",
+      "pattern_refs": ["MCP-002"]
+    },
+    {
+      "control_id": "CM-5",
+      "overlay_priority": "P1",
+      "ai_tailoring_guidance": "Enforce strict logical write restrictions during automated code generation so synthesis tools can write only domain overlays while chassis and test gates remain locked.",
+      "parameter_assignments": {
+        "cm-05_odp.01": "read-only (:ro / 0444 + SHA-256) lock on infrastructure, auth, and contract tests during codegen"
+      },
+      "assessment_check": "Run tamper-simulation test confirming unauthorized edits to locked paths fail closed.",
+      "pattern_refs": ["MCP-002"]
+    },
+    {
+      "control_id": "SA-15",
+      "overlay_priority": "P2",
+      "ai_tailoring_guidance": "Sanitize code-generation inputs (blocking external OpenAPI $ref SSRF and '../' path traversal) and record governance artifacts for AppSec review prior to release.",
+      "parameter_assignments": {
+        "sa-15_odp.01": "offline deterministic OpenAPI normalization + Stage 5 governance signoff metadata"
+      },
+      "assessment_check": "Confirm remote $ref URLs and path-traversal refs fail Stage 1 normalization immediately.",
+      "pattern_refs": ["MCP-004", "MCP-005"]
+    },
+    {
+      "control_id": "CA-2",
+      "overlay_priority": "P2",
+      "ai_tailoring_guidance": "Separate the deterministic compliance/test judge from the generative author so an LLM never self-certifies control satisfaction without independent rule execution.",
+      "parameter_assignments": {
+        "ca-02_odp.01": "deterministic rule/script evaluation independent of generative model self-grading"
+      },
+      "assessment_check": "Verify all pass/fail release gates execute deterministic code rather than unverified LLM prompts.",
+      "pattern_refs": ["MCP-002", "MCP-008"]
+    }
+  ]
+}

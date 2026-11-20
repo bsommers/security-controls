@@ -1,0 +1,463 @@
+{
+  "standard_id": "NIST-SP-800-53-R5-UPD1",
+  "title": "Security and Privacy Controls for Information Systems and Organizations (SP 800-53 Rev. 5, Update 1)",
+  "version": "5.1.1",
+  "source_url": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+  "oscal_upstream_url": "https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5",
+  "controls": [
+    {
+      "id": "AC-2",
+      "family": "AC",
+      "title": "Account Management",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Define, provision, monitor, and revoke system, service, and workload accounts according to mission and business need.",
+      "parameters": [
+        { "param_id": "ac-02_odp.01", "label": "allowed account and service-identity types" },
+        { "param_id": "ac-02_odp.02", "label": "account review frequency" }
+      ]
+    },
+    {
+      "id": "AC-3",
+      "family": "AC",
+      "title": "Access Enforcement",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.",
+      "parameters": [
+        { "param_id": "ac-03_odp.01", "label": "access control policy and authorization boundary" }
+      ]
+    },
+    {
+      "id": "AC-4",
+      "family": "AC",
+      "title": "Information Flow Enforcement",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Enforce approved authorizations for controlling the flow of information within the system and between interconnected systems or trust zones.",
+      "parameters": [
+        { "param_id": "ac-04_odp.01", "label": "information flow control policies across trust boundaries" }
+      ]
+    },
+    {
+      "id": "AC-6",
+      "family": "AC",
+      "title": "Least Privilege",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Employ the principle of least privilege, allowing only authorized accesses for users, processes, and agents necessary to accomplish assigned tasks.",
+      "parameters": [
+        { "param_id": "ac-06_odp.01", "label": "scoped privileges granted to processes and tools" }
+      ]
+    },
+    {
+      "id": "AC-6(1)",
+      "base_control_id": "AC-6",
+      "family": "AC",
+      "title": "Authorize Access to Security Functions",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Authorize explicit access for individuals or roles to security-relevant configuration, verification gates, and administrative functions.",
+      "parameters": [
+        { "param_id": "ac-06.01_odp.01", "label": "protected security functions and verification gates" }
+      ]
+    },
+    {
+      "id": "AC-6(10)",
+      "base_control_id": "AC-6",
+      "family": "AC",
+      "title": "Prohibit Non-Privileged Users from Executing Privileged Functions",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Prevent non-privileged users, untrusted agents, or callers from executing privileged administrative or destructive functions.",
+      "parameters": [
+        { "param_id": "ac-06.10_odp.01", "label": "privileged or destructive operations" }
+      ]
+    },
+    {
+      "id": "AT-3",
+      "family": "AT",
+      "title": "Role-Based Training",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Provide role-based security and privacy training to personnel with assigned AI, development, and operational security responsibilities.",
+      "parameters": [
+        { "param_id": "at-03_odp.01", "label": "roles requiring specialized AI/SI security training" }
+      ]
+    },
+    {
+      "id": "AU-2",
+      "family": "AU",
+      "title": "Event Logging",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Identify and log security-relevant event types capable of supporting audit investigations across system components.",
+      "parameters": [
+        { "param_id": "au-02_odp.01", "label": "auditable event types" }
+      ]
+    },
+    {
+      "id": "AU-3",
+      "family": "AU",
+      "title": "Content of Audit Records",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Ensure audit records contain event type, timestamp, source/actor identity, outcome, and correlation context without leaking raw secrets.",
+      "parameters": [
+        { "param_id": "au-03_odp.01", "label": "required structured audit fields and redaction rules" }
+      ]
+    },
+    {
+      "id": "AU-6",
+      "family": "AU",
+      "title": "Audit Record Review, Analysis, and Reporting",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Review and analyze system audit records for indications of inappropriate, anomalous, or cascading multi-component activity.",
+      "parameters": [
+        { "param_id": "au-06_odp.01", "label": "audit review cadence and anomaly triggers" }
+      ]
+    },
+    {
+      "id": "AU-9",
+      "family": "AU",
+      "title": "Protection of Audit Information",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Protect audit information and logging channels from unauthorized access, modification, corruption, and deletion.",
+      "parameters": [
+        { "param_id": "au-09_odp.01", "label": "audit stream isolation and integrity protections" }
+      ]
+    },
+    {
+      "id": "CA-2",
+      "family": "CA",
+      "title": "Control Assessments",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Assess security and privacy controls periodically using independent deterministic assessment procedures (SP 800-53A) to verify effective implementation.",
+      "parameters": [
+        { "param_id": "ca-02_odp.01", "label": "automated and independent assessment gates" }
+      ]
+    },
+    {
+      "id": "CA-7",
+      "family": "CA",
+      "title": "Continuous Monitoring",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Establish a continuous monitoring strategy tracking configuration drift, model/output drift, and control effectiveness over time.",
+      "parameters": [
+        { "param_id": "ca-07_odp.01", "label": "continuous telemetry metrics and drift thresholds" }
+      ]
+    },
+    {
+      "id": "CA-8",
+      "family": "CA",
+      "title": "Penetration Testing",
+      "baselines": ["high"],
+      "outcome_summary": "Conduct adversarial testing and red-teaming on systems and components to uncover exploitable boundary or prompt/protocol weaknesses.",
+      "parameters": [
+        { "param_id": "ca-08_odp.01", "label": "adversarial red-team scope and cadence" }
+      ]
+    },
+    {
+      "id": "CM-2",
+      "family": "CM",
+      "title": "Baseline Configuration",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Develop, document, and maintain under configuration control a current baseline configuration (Golden Template) of the system.",
+      "parameters": [
+        { "param_id": "cm-02_odp.01", "label": "immutable baseline artifacts" }
+      ]
+    },
+    {
+      "id": "CM-3",
+      "family": "CM",
+      "title": "Configuration Change Control",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Determine types of changes that are configuration-controlled, review proposed changes with automated security impact checks, and retain change records.",
+      "parameters": [
+        { "param_id": "cm-03_odp.01", "label": "change-controlled paths and signoff gates" }
+      ]
+    },
+    {
+      "id": "CM-5",
+      "family": "CM",
+      "title": "Access Restrictions for Change",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Define, document, approve, and enforce physical and logical access restrictions associated with changes to the system.",
+      "parameters": [
+        { "param_id": "cm-05_odp.01", "label": "read-only vs writable filesystem/repository boundaries" }
+      ]
+    },
+    {
+      "id": "CM-7",
+      "family": "CM",
+      "title": "Least Functionality",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Configure the system to provide only essential capabilities and prohibit or restrict unused or high-risk functions, ports, protocols, and tools.",
+      "parameters": [
+        { "param_id": "cm-07_odp.01", "label": "prohibited capabilities and maximum active toolset cap" }
+      ]
+    },
+    {
+      "id": "CP-9",
+      "family": "CP",
+      "title": "System Backup",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Conduct backups of system-level information, configurations, and verified artifacts to support rapid recovery and rollback.",
+      "parameters": [
+        { "param_id": "cp-09_odp.01", "label": "recoverable artifacts and rollback snapshots" }
+      ]
+    },
+    {
+      "id": "IA-2",
+      "family": "IA",
+      "title": "Identification and Authentication (Organizational Users)",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Uniquely identify and authenticate organizational users and associate that identity with processes acting on their behalf.",
+      "parameters": [
+        { "param_id": "ia-02_odp.01", "label": "user authentication mechanism" }
+      ]
+    },
+    {
+      "id": "IA-5",
+      "family": "IA",
+      "title": "Authenticator Management",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Manage authenticators by protecting secret material from unauthorized disclosure, avoiding hardcoding, and enforcing rotation.",
+      "parameters": [
+        { "param_id": "ia-05_odp.01", "label": "credential storage and anti-exposure controls" }
+      ]
+    },
+    {
+      "id": "IA-9",
+      "family": "IA",
+      "title": "Service Identification and Authentication",
+      "baselines": ["high"],
+      "outcome_summary": "Identify and authenticate services, agents, and microservices uniquely using audience-restricted credentials before establishing communications.",
+      "parameters": [
+        { "param_id": "ia-09_odp.01", "label": "service-to-service / inter-agent authentication mechanism" }
+      ]
+    },
+    {
+      "id": "IR-4",
+      "family": "IR",
+      "title": "Incident Handling",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Implement an incident handling capability covering detection, containment, circuit-breaking, eradication, and recovery.",
+      "parameters": [
+        { "param_id": "ir-04_odp.01", "label": "containment and automated kill-switch procedures" }
+      ]
+    },
+    {
+      "id": "MA-2",
+      "family": "MA",
+      "title": "Controlled Maintenance",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Schedule, document, and review maintenance, model updates, and dependency upgrades under controlled conditions.",
+      "parameters": [
+        { "param_id": "ma-02_odp.01", "label": "controlled model/software update workflow" }
+      ]
+    },
+    {
+      "id": "MP-2",
+      "family": "MP",
+      "title": "Media Access",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Restrict access to digital and non-digital media containing training corpora, embeddings, weights, or sensitive artifacts.",
+      "parameters": [
+        { "param_id": "mp-02_odp.01", "label": "protected artifact and dataset storage classes" }
+      ]
+    },
+    {
+      "id": "PE-3",
+      "family": "PE",
+      "title": "Physical Access Control",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Enforce physical access authorizations at facilities housing compute accelerators, HSMs, and production infrastructure.",
+      "parameters": [
+        { "param_id": "pe-03_odp.01", "label": "facility and hardware security boundaries" }
+      ]
+    },
+    {
+      "id": "PL-8",
+      "family": "PL",
+      "title": "Security and Privacy Architectures",
+      "baselines": ["moderate", "high", "privacy"],
+      "outcome_summary": "Develop security and privacy architectures allocating controls across trust zones, stateless runtimes, and external service boundaries.",
+      "parameters": [
+        { "param_id": "pl-08_odp.01", "label": "architectural trust boundaries and isolation model" }
+      ]
+    },
+    {
+      "id": "PM-9",
+      "family": "PM",
+      "title": "Risk Management Strategy",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Develop a comprehensive risk management strategy establishing risk tolerance, governance signoffs, and AI RMF alignment.",
+      "parameters": [
+        { "param_id": "pm-09_odp.01", "label": "governance approval thresholds" }
+      ]
+    },
+    {
+      "id": "PS-6",
+      "family": "PS",
+      "title": "Access Agreements",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Develop and maintain access agreements for individuals and operators handling privileged credentials, datasets, and AI tooling.",
+      "parameters": [
+        { "param_id": "ps-06_odp.01", "label": "privileged operator access terms" }
+      ]
+    },
+    {
+      "id": "PT-2",
+      "family": "PT",
+      "title": "Authority to Process Personally Identifiable Information",
+      "baselines": ["privacy"],
+      "outcome_summary": "Determine and restrict processing of personally identifiable information (PII) in prompts, training sets, embeddings, and tool outputs.",
+      "parameters": [
+        { "param_id": "pt-02_odp.01", "label": "authorized PII scope and redaction/projection policy" }
+      ]
+    },
+    {
+      "id": "RA-3",
+      "family": "RA",
+      "title": "Risk Assessment",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Conduct risk assessments identifying threats, vulnerabilities, likelihood, and impact across AI models, prompts, tools, and dependencies.",
+      "parameters": [
+        { "param_id": "ra-03_odp.01", "label": "threat model scope and risk update triggers" }
+      ]
+    },
+    {
+      "id": "RA-5",
+      "family": "RA",
+      "title": "Vulnerability Monitoring and Scanning",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Monitor and scan software, containers, schemas, and dependencies for vulnerabilities and remediate discovered flaws.",
+      "parameters": [
+        { "param_id": "ra-05_odp.01", "label": "static/dependency/container scan cadence" }
+      ]
+    },
+    {
+      "id": "SA-8",
+      "family": "SA",
+      "title": "Security and Privacy Engineering Principles",
+      "baselines": ["low", "moderate", "high", "privacy"],
+      "outcome_summary": "Apply systems security and privacy engineering principles (defense-in-depth, fail-safe defaults, least privilege, economy of mechanism) in specification and design.",
+      "parameters": [
+        { "param_id": "sa-08_odp.01", "label": "codified secure design patterns" }
+      ]
+    },
+    {
+      "id": "SA-11",
+      "family": "SA",
+      "title": "Developer Testing and Evaluation",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Require developers and build pipelines to execute static analysis, strict typechecking, unit/contract coverage, and adversarial torture tests.",
+      "parameters": [
+        { "param_id": "sa-11_odp.01", "label": "mandatory pre-release verification gates and coverage floor" }
+      ]
+    },
+    {
+      "id": "SA-15",
+      "family": "SA",
+      "title": "Development Process, Standards, and Tools",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Require the development process and code-generation toolchains to follow documented security standards (including NIST SP 800-218/218A SSDF).",
+      "parameters": [
+        { "param_id": "sa-15_odp.01", "label": "secure development and codegen toolchain standards" }
+      ]
+    },
+    {
+      "id": "SC-5",
+      "family": "SC",
+      "title": "Denial-of-Service Protection",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Protect against or limit the effects of denial-of-service and resource/context exhaustion attacks via payload caps, timeouts, and rate/cardinality bounds.",
+      "parameters": [
+        { "param_id": "sc-05_odp.01", "label": "byte, cardinality, recursion, and timeout bounds" }
+      ]
+    },
+    {
+      "id": "SC-7",
+      "family": "SC",
+      "title": "Boundary Protection",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Monitor and control communications at external system boundaries and key internal trust boundaries, blocking unauthorized egress/SSRF.",
+      "parameters": [
+        { "param_id": "sc-07_odp.01", "label": "egress, SSRF, and transport boundary rules" }
+      ]
+    },
+    {
+      "id": "SC-8",
+      "family": "SC",
+      "title": "Transmission Confidentiality and Integrity",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Protect the confidentiality and integrity of transmitted information across network and IPC transports.",
+      "parameters": [
+        { "param_id": "sc-08_odp.01", "label": "transport encryption and frame integrity mechanisms" }
+      ]
+    },
+    {
+      "id": "SC-39",
+      "family": "SC",
+      "title": "Process Isolation",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Maintain a separate execution domain for each executing process and isolate untrusted code or synthesis agents in kernel/container sandboxes.",
+      "parameters": [
+        { "param_id": "sc-39_odp.01", "label": "process/container sandbox mechanism" }
+      ]
+    },
+    {
+      "id": "SI-4",
+      "family": "SI",
+      "title": "System Monitoring",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Monitor the system to detect attacks, unauthorized connections, anomalous tool invocations, and potential compromises.",
+      "parameters": [
+        { "param_id": "si-04_odp.01", "label": "runtime telemetry and anomaly detection signals" }
+      ]
+    },
+    {
+      "id": "SI-7",
+      "family": "SI",
+      "title": "Software, Firmware, and Information Integrity",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Employ integrity verification tools (cryptographic digests, pinned commit SHAs, lockfiles) to detect unauthorized changes to software, models, and data.",
+      "parameters": [
+        { "param_id": "si-07_odp.01", "label": "cryptographic digest and integrity verification policy" }
+      ]
+    },
+    {
+      "id": "SI-7(1)",
+      "base_control_id": "SI-7",
+      "family": "SI",
+      "title": "Integrity Checks",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Perform integrity checks on software, locked templates, model artifacts, and configuration state at startup, transition, or post-synthesis.",
+      "parameters": [
+        { "param_id": "si-07.01_odp.01", "label": "integrity check trigger events and fail-closed response" }
+      ]
+    },
+    {
+      "id": "SI-10",
+      "family": "SI",
+      "title": "Information Input Validation",
+      "baselines": ["moderate", "high"],
+      "outcome_summary": "Check the validity of information inputs (JSON Schema 2020-12 types, RFC 9110 header tokens, path confinement, prompt/docstring hygiene).",
+      "parameters": [
+        { "param_id": "si-10_odp.01", "label": "input and schema validation contracts" }
+      ]
+    },
+    {
+      "id": "SR-3",
+      "family": "SR",
+      "title": "Supply Chain Controls and Processes",
+      "baselines": ["low", "moderate", "high"],
+      "outcome_summary": "Establish processes to identify and mitigate supply chain risks across dependencies, CI actions, base images, and foundation models.",
+      "parameters": [
+        { "param_id": "sr-03_odp.01", "label": "supply chain pinning and provenance requirements" }
+      ]
+    },
+    {
+      "id": "SR-4",
+      "family": "SR",
+      "title": "Provenance",
+      "baselines": ["high"],
+      "outcome_summary": "Document, monitor, and maintain valid provenance of datasets, schemas, models, dependencies, and generated code artifacts.",
+      "parameters": [
+        { "param_id": "sr-04_odp.01", "label": "artifact lineage and provenance metadata" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security Controls Library — NIST SP 800-53r5 Update 1 &amp; COSIS Overlays</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #0f172a;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0c1e38 0%, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header, main, footer { max-width: 1120px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { padding-top: 3.5rem; border-bottom: 1px solid var(--border); }
+    .pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    h1 { font-size: 2.2rem; margin: 0.8rem 0 0.5rem; }
+    p.lead { color: var(--muted); max-width: 840px; font-size: 1.05rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+    }
+    .uc-id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--emerald); font-weight: 700; }
+    .baseline { float: right; font-size: 0.76rem; color: var(--amber); font-weight: 700; text-transform: uppercase; }
+    .card h3 { margin: 0.45rem 0 0.55rem; font-size: 1.06rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin: 0 0 0.8rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; color: #cbd5e1; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="pill">NIST SP 800-53r5 Update 1</span>
+    <span class="pill">NIST COSIS 5 Use Cases</span>
+    <span class="pill">OSCAL 1.1.2</span>
+    <h1>Security Controls Library</h1>
+    <p class="lead">
+      Machine-validated NIST SP 800-53 Rev. 5 (Update 1) control catalog and COSIS (Control Overlays for Super Intelligence Systems) use-case overlays with deterministic OSCAL 1.1.2 profile export and bidirectional crosswalks to <a href="https://github.com/bsommers/secure-design-patterns">secure-design-patterns</a> and <a href="https://github.com/bsommers/forge">forge</a>.
+    </p>
+  </header>
+  <main>
+    <h2>Official NIST COSIS Use-Case Overlays</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="uc-id">UC-GEN</span><span class="baseline">Moderate</span>
+        <h3>Generative SI – Assistant / LLM</h3>
+        <p>Prompt-injection hygiene, tenant RAG isolation, PII minimization, and 32 KiB structured output bounding.</p>
+        <code>AC-4 · AU-3 · CA-7 · PT-2 · SC-5 · SI-10</code>
+      </article>
+      <article class="card">
+        <span class="uc-id">UC-PRED</span><span class="baseline">Moderate</span>
+        <h3>Using &amp; Fine-Tuning Predictive SI</h3>
+        <p>Dataset/checkpoint SHA-256 integrity, fine-tuning provenance lineage, feature schema validation, and drift monitoring.</p>
+        <code>CA-7 · MP-2 · PT-2 · SI-7 · SI-10 · SR-4</code>
+      </article>
+      <article class="card">
+        <span class="uc-id">UC-AGENT-SINGLE</span><span class="baseline">Moderate</span>
+        <h3>SI Agent Systems – Single Agent</h3>
+        <p>Server-bound per-route credentials, &le; 15 active tools, destructive-action quarantine, and kernel/container sandboxing.</p>
+        <code>AC-6 · AC-6(10) · CM-7 · IR-4 · SC-5 · SC-7 · SC-39</code>
+      </article>
+      <article class="card">
+        <span class="uc-id">UC-AGENT-MULTI</span><span class="baseline">High</span>
+        <h3>SI Agent Systems – Multi-Agent</h3>
+        <p>Per-role service identity, anti-reward-hacking immutable Golden Template locks, stateless typed handoffs, and retry caps.</p>
+        <code>AC-4 · AC-6(1) · AU-6 · IA-9 · SC-5 · SI-7(1)</code>
+      </article>
+      <article class="card">
+        <span class="uc-id">UC-DEV</span><span class="baseline">Moderate</span>
+        <h3>Security Controls for SI Developers</h3>
+        <p>40-char SHA-pinned CI workflows, codified secure patterns, 5-gate deterministic verification, and SSRF-free codegen.</p>
+        <code>CA-2 · CM-2 · CM-5 · SA-8 · SA-11 · SA-15 · SR-3</code>
+      </article>
+    </div>
+  </main>
+  <footer>
+    Sources: <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53r5 Upd1</a> · <a href="https://csrc.nist.gov/projects/cosis/use-cases">NIST COSIS Use Cases</a> · Next Milestone: <code>M1 Research Spike (v1.1.0)</code>
+  </footer>
+</body>
+</html>

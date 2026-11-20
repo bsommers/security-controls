@@ -1,0 +1,47 @@
+name: Validate NIST SP 800-53r5 & COSIS Security Controls
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Catalog Integrity, OSCAL Determinism, Strict Types & Torture Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up uv & Python 3.12
+        uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
+        with:
+          python-version: "3.12"
+
+      - name: Install dev dependencies
+        run: uv sync
+
+      - name: Validate catalogs, overlays & Markdown links
+        run: uv run python scripts/validate_controls.py
+
+      - name: Ruff lint & Bandit security rules
+        run: uv run ruff check src scripts tests
+
+      - name: Mypy strict typecheck
+        run: uv run mypy --strict -p security_controls -p scripts
+
+      - name: Pytest smoke, unit, integration & torture suite
+        run: uv run pytest -v

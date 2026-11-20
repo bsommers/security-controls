@@ -1,0 +1,44 @@
+{
+  "project_id": "NIST-COSIS",
+  "official_title": "SP 800-53 Control Overlays for Super Intelligence Systems",
+  "former_title": "Control Overlays for Securing AI Systems (COSAiS)",
+  "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+  "base_catalog_url": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+  "use_cases": [
+    {
+      "id": "UC-GEN",
+      "slug": "uc-gen-llm-assistant",
+      "official_name": "Adapting and Using Generative SI – Assistant / Large Language Model (LLM)",
+      "overlay_file": "overlays/uc-gen-llm-assistant.json",
+      "summary": "Securing generative systems and assistants that synthesize text, code, or multimodal content from prompts, RAG corpora, and enterprise context."
+    },
+    {
+      "id": "UC-PRED",
+      "slug": "uc-pred-predictive-si",
+      "official_name": "Using and Fine-Tuning Predictive SI",
+      "overlay_file": "overlays/uc-pred-predictive-si.json",
+      "summary": "Securing statistical and machine-learning systems fine-tuned on historical data to classify, forecast, or score operational decisions."
+    },
+    {
+      "id": "UC-AGENT-SINGLE",
+      "slug": "uc-agent-single",
+      "official_name": "Using SI Agent Systems (SI Agents) – Single Agent",
+      "overlay_file": "overlays/uc-agent-single.json",
+      "summary": "Securing autonomous or semi-autonomous single-agent systems invoking external tools, MCP servers, and APIs to execute multi-step workflows."
+    },
+    {
+      "id": "UC-AGENT-MULTI",
+      "slug": "uc-agent-multi",
+      "official_name": "Using SI Agent Systems (SI Agents) – Multi-Agent",
+      "overlay_file": "overlays/uc-agent-multi.json",
+      "summary": "Securing collaborative multi-agent swarms and delegated agent topologies against lateral movement, confused-deputy escalation, and cascade failures."
+    },
+    {
+      "id": "UC-DEV",
+      "slug": "uc-dev-si-developers",
+      "official_name": "Security Controls for SI Developers",
+      "overlay_file": "overlays/uc-dev-si-developers.json",
+      "summary": "Establishing secure software, model, and tool-generation engineering practices for SI builders in alignment with NIST SP 800-218 / SP 800-218A (SSDF)."
+    }
+  ]
+}

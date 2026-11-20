@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "security-controls"
+version = "1.0.0"
+description = "Machine-validated NIST SP 800-53 Rev. 5 (Update 1) Security Controls & COSIS (Control Overlays for Super Intelligence Systems) Use-Case Overlay Library with OSCAL 1.1.2 export."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Bill Sommers" }]
+
+[project.scripts]
+security-controls = "security_controls.cli:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.11.0",
+    "pytest>=8.3.0",
+    "ruff>=0.8.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/security_controls"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+markers = [
+    "smoke: fast catalog load and CLI sanity checks",
+    "unit: deterministic model, loader, and schema validation checks",
+    "integration: end-to-end COSIS overlay resolution and OSCAL profile export",
+    "torture: malformed catalog, cyclic/dangling control reference, and determinism stress tests",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "T20"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106"]
+"scripts/**" = ["T201"]
+"src/security_controls/cli.py" = ["T201"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = ["src", "."]
+packages = ["security_controls", "scripts"]
