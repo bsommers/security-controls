@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+  <defs>
+    <linearGradient id="sc-hero-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030912"/>
+      <stop offset="52%" stop-color="#071b24"/>
+      <stop offset="100%" stop-color="#040a14"/>
+    </linearGradient>
+    <linearGradient id="sc-hero-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="sc-hero-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ff9d"/>
+      <stop offset="55%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <pattern id="sc-hero-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#10b981"
+            stroke-opacity="0.11" stroke-width="1"/>
+      <circle cx="0" cy="0" r="1.3" fill="#fbbf24" fill-opacity="0.22"/>
+    </pattern>
+    <filter id="sc-hero-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#sc-hero-bg)"/>
+  <rect width="1200" height="360" rx="24" fill="url(#sc-hero-grid)"/>
+  <rect x="14" y="14" width="1172" height="332" rx="18" fill="none" stroke="url(#sc-hero-gold)" stroke-width="2.5" stroke-opacity="0.82"/>
+  <path d="M 30 54 L 30 30 L 66 30 M 1170 54 L 1170 30 L 1134 30 M 30 306 L 30 330 L 66 330 M 1170 306 L 1170 330 L 1134 330" fill="none" stroke="#00ff9d" stroke-width="3"/>
+  <path d="M 1030 92 A 95 95 0 0 1 1142 180" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-opacity="0.75"/>
+  <path d="M 1054 114 A 68 68 0 0 1 1122 180" fill="none" stroke="#00ff9d" stroke-width="4" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M 1076 136 A 42 42 0 0 1 1102 180" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" stroke-opacity="0.85"/>
+  <g>
+    <polygon points="196.0,32.3 214.2,65.0 241.6,39.5 248.9,76.2 282.8,60.5 278.4,97.6 315.5,93.2 299.8,127.1 336.5,134.4 311.0,161.8 343.7,180.0 311.0,198.2 336.5,225.6 299.8,232.9 315.5,266.8 278.4,262.4 282.8,299.5 248.9,283.8 241.6,320.5 214.2,295.0 196.0,327.7 177.8,295.0 150.4,320.5 143.1,283.8 109.2,299.5 113.6,262.4 76.5,266.8 92.2,232.9 55.5,225.6 81.0,198.2 48.3,180.0 81.0,161.8 55.5,134.4 92.2,127.1 76.5,93.2 113.6,97.6 109.2,60.5 143.1,76.2 150.4,39.5 177.8,65.0" fill="#071923" fill-opacity="0.95" stroke="url(#sc-hero-gold)" stroke-width="4.4"/>
+    <circle cx="196.0" cy="180.0" r="95.7" fill="#041019" stroke="url(#sc-hero-emerald)" stroke-width="3.7"/>
+    <line x1="196.0" y1="86.4" x2="196.0" y2="71.8" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="224.9" y1="91.0" x2="229.4" y2="77.1" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="251.0" y1="104.3" x2="259.6" y2="92.5" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="271.7" y1="125.0" x2="283.5" y2="116.4" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="285.0" y1="151.1" x2="298.9" y2="146.6" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="289.6" y1="180.0" x2="304.2" y2="180.0" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="285.0" y1="208.9" x2="298.9" y2="213.4" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="271.7" y1="235.0" x2="283.5" y2="243.6" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="251.0" y1="255.7" x2="259.6" y2="267.5" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="224.9" y1="269.0" x2="229.4" y2="282.9" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="196.0" y1="273.6" x2="196.0" y2="288.2" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="167.1" y1="269.0" x2="162.6" y2="282.9" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="141.0" y1="255.7" x2="132.4" y2="267.5" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="120.3" y1="235.0" x2="108.5" y2="243.6" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="107.0" y1="208.9" x2="93.1" y2="213.4" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="102.4" y1="180.0" x2="87.8" y2="180.0" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="107.0" y1="151.1" x2="93.1" y2="146.6" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="120.3" y1="125.0" x2="108.5" y2="116.4" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="141.0" y1="104.3" x2="132.4" y2="92.5" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <line x1="167.1" y1="91.0" x2="162.6" y2="77.1" stroke="#fde047" stroke-width="2.7" stroke-linecap="round"/>
+    <polygon points="196.0,119.7 253.4,161.4 231.5,228.8 160.5,228.8 138.6,161.4" fill="#0a2730" fill-opacity="0.7" stroke="#00ff9d" stroke-width="2.9"/>
+    <line x1="196.0" y1="119.7" x2="231.5" y2="228.8" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="2.3"/>
+    <line x1="253.4" y1="161.4" x2="160.5" y2="228.8" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="2.3"/>
+    <line x1="231.5" y1="228.8" x2="138.6" y2="161.4" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="2.3"/>
+    <line x1="160.5" y1="228.8" x2="196.0" y2="119.7" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="2.3"/>
+    <line x1="138.6" y1="161.4" x2="253.4" y2="161.4" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="2.3"/>
+    <circle cx="196.0" cy="119.7" r="10.9" fill="#00ff9d" stroke="#040a14" stroke-width="2.6" filter="url(#sc-hero-glow)"/>
+    <circle cx="253.4" cy="161.4" r="10.9" fill="#38bdf8" stroke="#040a14" stroke-width="2.6" filter="url(#sc-hero-glow)"/>
+    <circle cx="231.5" cy="228.8" r="10.9" fill="#fde047" stroke="#040a14" stroke-width="2.6" filter="url(#sc-hero-glow)"/>
+    <circle cx="160.5" cy="228.8" r="10.9" fill="#00e5ff" stroke="#040a14" stroke-width="2.6" filter="url(#sc-hero-glow)"/>
+    <circle cx="138.6" cy="161.4" r="10.9" fill="#10b981" stroke="#040a14" stroke-width="2.6" filter="url(#sc-hero-glow)"/>
+    <circle cx="196.0" cy="180.0" r="14.6" fill="url(#sc-hero-gold)" filter="url(#sc-hero-glow)"/>
+  </g>
+  <text x="380" y="90" fill="#00ff9d" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace" font-size="14" font-weight="700">20-FAMILY STAR-DIAL  //  NIST COSIS OVERLAYS</text>
+  <text x="378" y="152" fill="#f8fafc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="48" font-weight="800">SECURITY CONTROLS</text>
+  <text x="380" y="196" fill="#94a3b8" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="500">NIST SP 800-53 Rev. 5 Update 1 Catalog, 5 AI/SI Overlays &amp; OSCAL 1.1.2 Profiles</text>
+  <g transform="translate(380, 232)">
+    <rect width="192" height="40" rx="8" fill="#072227" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="96" y="25" text-anchor="middle" fill="#fde047" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace" font-size="13" font-weight="700">20 CONTROL FAMILIES</text>
+  </g>
+  <g transform="translate(586, 232)">
+    <rect width="202" height="40" rx="8" fill="#072227" stroke="#00ff9d" stroke-width="1.5"/>
+    <text x="101" y="25" text-anchor="middle" fill="#00ff9d" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace" font-size="13" font-weight="700">5 COSIS AI USE CASES</text>
+  </g>
+  <g transform="translate(802, 232)">
+    <rect width="204" height="40" rx="8" fill="#072227" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="102" y="25" text-anchor="middle" fill="#38bdf8" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace" font-size="13" font-weight="700">OSCAL 1.1.2 EXPORT</text>
+  </g>
+  <text x="380" y="314" fill="#5eead4" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace" font-size="13">$ security-controls export-oscal --use-case UC-AGENT-MULTI  -&gt;  UUIDv5 Profile</text>
+</svg>

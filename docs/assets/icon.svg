@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sc-sq-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030912"/>
+      <stop offset="52%" stop-color="#071b24"/>
+      <stop offset="100%" stop-color="#040a14"/>
+    </linearGradient>
+    <linearGradient id="sc-sq-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="sc-sq-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ff9d"/>
+      <stop offset="55%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <pattern id="sc-sq-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#10b981"
+            stroke-opacity="0.11" stroke-width="1"/>
+      <circle cx="0" cy="0" r="1.3" fill="#fbbf24" fill-opacity="0.22"/>
+    </pattern>
+    <filter id="sc-sq-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="92" fill="url(#sc-sq-bg)"/>
+  <rect width="512" height="512" rx="92" fill="url(#sc-sq-grid)"/>
+  <rect x="22" y="22" width="468" height="468" rx="74" fill="none" stroke="url(#sc-sq-gold)" stroke-width="4" stroke-opacity="0.85"/>
+  <g>
+    <polygon points="256.0,48.7 281.6,94.5 320.1,58.8 330.2,110.3 377.9,88.3 371.6,140.4 423.7,134.1 401.7,181.8 453.2,191.9 417.5,230.4 463.3,256.0 417.5,281.6 453.2,320.1 401.7,330.2 423.7,377.9 371.6,371.6 377.9,423.7 330.2,401.7 320.1,453.2 281.6,417.5 256.0,463.3 230.4,417.5 191.9,453.2 181.8,401.7 134.1,423.7 140.4,371.6 88.3,377.9 110.3,330.2 58.8,320.1 94.5,281.6 48.7,256.0 94.5,230.4 58.8,191.9 110.3,181.8 88.3,134.1 140.4,140.4 134.1,88.3 181.8,110.3 191.9,58.8 230.4,94.5" fill="#071923" fill-opacity="0.95" stroke="url(#sc-sq-gold)" stroke-width="6.1"/>
+    <circle cx="256.0" cy="256.0" r="134.3" fill="#041019" stroke="url(#sc-sq-emerald)" stroke-width="5.3"/>
+    <line x1="256.0" y1="124.6" x2="256.0" y2="104.2" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="296.6" y1="131.0" x2="302.9" y2="111.6" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="333.2" y1="149.7" x2="345.2" y2="133.2" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="362.3" y1="178.8" x2="378.8" y2="166.8" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="381.0" y1="215.4" x2="400.4" y2="209.1" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="387.4" y1="256.0" x2="407.8" y2="256.0" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="381.0" y1="296.6" x2="400.4" y2="302.9" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="362.3" y1="333.2" x2="378.8" y2="345.2" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="333.2" y1="362.3" x2="345.2" y2="378.8" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="296.6" y1="381.0" x2="302.9" y2="400.4" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="256.0" y1="387.4" x2="256.0" y2="407.8" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="215.4" y1="381.0" x2="209.1" y2="400.4" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="178.8" y1="362.3" x2="166.8" y2="378.8" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="149.7" y1="333.2" x2="133.2" y2="345.2" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="131.0" y1="296.6" x2="111.6" y2="302.9" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="124.6" y1="256.0" x2="104.2" y2="256.0" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="131.0" y1="215.4" x2="111.6" y2="209.1" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="149.7" y1="178.8" x2="133.2" y2="166.8" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="178.8" y1="149.7" x2="166.8" y2="133.2" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="215.4" y1="131.0" x2="209.1" y2="111.6" stroke="#fde047" stroke-width="3.8" stroke-linecap="round"/>
+    <polygon points="256.0,171.3 336.5,229.8 305.8,324.5 206.2,324.5 175.5,229.8" fill="#0a2730" fill-opacity="0.7" stroke="#00ff9d" stroke-width="4.1"/>
+    <line x1="256.0" y1="171.3" x2="305.8" y2="324.5" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="3.2"/>
+    <line x1="336.5" y1="229.8" x2="206.2" y2="324.5" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="3.2"/>
+    <line x1="305.8" y1="324.5" x2="175.5" y2="229.8" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="3.2"/>
+    <line x1="206.2" y1="324.5" x2="256.0" y2="171.3" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="3.2"/>
+    <line x1="175.5" y1="229.8" x2="336.5" y2="229.8" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="3.2"/>
+    <circle cx="256.0" cy="171.3" r="15.3" fill="#00ff9d" stroke="#040a14" stroke-width="3.6" filter="url(#sc-sq-glow)"/>
+    <circle cx="336.5" cy="229.8" r="15.3" fill="#38bdf8" stroke="#040a14" stroke-width="3.6" filter="url(#sc-sq-glow)"/>
+    <circle cx="305.8" cy="324.5" r="15.3" fill="#fde047" stroke="#040a14" stroke-width="3.6" filter="url(#sc-sq-glow)"/>
+    <circle cx="206.2" cy="324.5" r="15.3" fill="#00e5ff" stroke="#040a14" stroke-width="3.6" filter="url(#sc-sq-glow)"/>
+    <circle cx="175.5" cy="229.8" r="15.3" fill="#10b981" stroke="#040a14" stroke-width="3.6" filter="url(#sc-sq-glow)"/>
+    <circle cx="256.0" cy="256.0" r="20.4" fill="url(#sc-sq-gold)" filter="url(#sc-sq-glow)"/>
+  </g>
+</svg>

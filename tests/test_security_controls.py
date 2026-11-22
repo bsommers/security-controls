@@ -151,3 +151,24 @@ def test_loader_rejects_fabricated_control_id_and_undeclared_parameter(tmp_path:
 
     with pytest.raises(CatalogIntegrityError, match="bogus_odp.99"):
         load_library(mirror)
+
+
+def test_brand_svg_and_png_assets_are_valid() -> None:
+    import xml.etree.ElementTree as ET
+
+    png_magic = b"\x89PNG\r\n\x1a\n"
+    for rel_svg in ("assets/logo.svg", "docs/assets/icon.svg", "docs/assets/logo.svg"):
+        svg_text = (ROOT / rel_svg).read_text(encoding="utf-8")
+        root = ET.fromstring(svg_text)  # noqa: S314
+        assert root.tag.endswith("svg")
+        assert "@import" not in svg_text
+
+    for rel_png in (
+        "assets/logo.png",
+        "docs/assets/icon.png",
+        "docs/assets/logo.png",
+        "docs/assets/hero-illustration.png",
+    ):
+        raw = (ROOT / rel_png).read_bytes()
+        assert len(raw) > 128
+        assert raw.startswith(png_magic)

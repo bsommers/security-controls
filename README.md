@@ -1,11 +1,19 @@
 # Security Controls Library (`NIST SP 800-53r5 Update 1` + `COSIS`)
 
+<p align="center">
+  <img src="docs/assets/logo.svg" alt="Security Controls — 20-Family Star-Dial & COSIS Hero Banner" width="100%" />
+</p>
+
 > **Deterministic, machine-validated security & privacy control catalog, NIST COSIS AI/SI use-case overlays, OSCAL 1.1.2 Profile exporter, and secure-design-pattern crosswalk.**
 
 [![NIST SP 800-53](https://img.shields.io/badge/NIST-SP_800--53r5_Upd1-0284c7)](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)
 [![NIST COSIS](https://img.shields.io/badge/NIST_COSIS-5_Use_Case_Overlays-10b981)](https://csrc.nist.gov/projects/cosis/use-cases)
 [![OSCAL](https://img.shields.io/badge/OSCAL-1.1.2_Profiles-f59e0b)](src/security_controls/oscal.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-64748b)](LICENSE)
+
+<p align="center">
+  <img src="docs/assets/hero-illustration.png" alt="Art-Deco 20-Point Vault Star-Dial Surrounding 5-Node COSIS Neural Constellation" width="100%" />
+</p>
 
 ---
 
