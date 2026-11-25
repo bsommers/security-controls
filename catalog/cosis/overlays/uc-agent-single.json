@@ -1,11 +1,27 @@
 {
   "overlay_id": "COSIS-UC-AGENT-SINGLE",
   "use_case_id": "UC-AGENT-SINGLE",
-  "title": "COSIS Overlay: Using SI Agent Systems (SI Agents) – Single Agent",
+  "title": "COSIS Overlay: Using SI Agent Systems (SI Agents) \u2013 Single Agent",
   "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
   "provenance_tier": "nist_cosis_use_case_overlay",
+  "source_provenance": {
+    "upstream_cosis_source": {
+      "publication_status": "[NIST-DRAFT]",
+      "csrc_project_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+      "use_case_designation": "UC-AGENT-SINGLE: COSIS Overlay: Using SI Agent Systems (SI Agents) \u2013 Single Agent"
+    },
+    "organization_tailoring": {
+      "authority_id": "bsommers/secure-design-patterns@MCP-2026-07-28",
+      "pattern_catalog_url": "https://github.com/bsommers/secure-design-patterns/blob/main/patterns/mcp-serve/catalog.json",
+      "scope_note": "Maps MCP 2026-07-28 engineering invariants (MCP-001..008) onto SP 800-53r5 ODPs without claiming finalized federal COSIS mandate."
+    }
+  },
   "default_baseline": "moderate",
-  "cia_focus": ["integrity", "confidentiality", "availability"],
+  "cia_focus": [
+    "integrity",
+    "confidentiality",
+    "availability"
+  ],
   "primary_risks": [
     "Excessive agency and unauthorized destructive tool or API invocations",
     "Confused-deputy credential passthrough replaying caller tokens against upstream services",
@@ -16,72 +32,98 @@
     {
       "control_id": "AC-6",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Bind agent tool servers to least-privilege, per-operation server credentials; prohibit client token passthrough and send zero credentials on public routes.",
       "parameter_assignments": {
         "ac-06_odp.01": "server-bound env credentials with per-route security dispatch and explicit zero-credential security: [] handling"
       },
       "assessment_check": "Verify caller Authorization headers are ignored and each route dispatches only its scoped credential.",
-      "pattern_refs": ["MCP-001"]
+      "pattern_refs": [
+        "MCP-001"
+      ]
     },
     {
       "control_id": "AC-6(10)",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Annotate mutating and destructive agent tools explicitly (destructiveHint=True) and quarantine destructive operations behind human/AppSec approval profiles.",
       "parameter_assignments": {
         "ac-06.10_odp.01": "DELETE, purge, credential-mutation, and privilege-modifying tool invocations"
       },
       "assessment_check": "Confirm read-only triage profiles exclude destructiveHint=True tools and release artifacts flag AppSec signoff.",
-      "pattern_refs": ["MCP-005"]
+      "pattern_refs": [
+        "MCP-005"
+      ]
     },
     {
       "control_id": "CM-7",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Cap active tools exposed to a single agent session (<= 15 task-oriented tools), disable deprecated bidirectional callbacks (SEP-2577 sampling/roots), and block unused imports.",
       "parameter_assignments": {
         "cm-07_odp.01": "<= 15 active tools per client profile; SEP-2577 .sample()/.list_roots()/.set_logging_level() prohibited"
       },
       "assessment_check": "Assert manifest and active client profiles expose <= 15 tools and pass AST SEP-2577 deprecation checks.",
-      "pattern_refs": ["MCP-005", "MCP-008"]
+      "pattern_refs": [
+        "MCP-005",
+        "MCP-008"
+      ]
     },
     {
       "control_id": "SC-39",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Isolate agent tool execution and any code-synthesis steps inside privilege-dropped containers (--cap-drop=ALL, read-only rootfs) or OS kernel sandboxes (sandbox-exec / bwrap).",
       "parameter_assignments": {
         "sc-39_odp.01": "non-root container (--cap-drop=ALL, :ro rootfs) or OS seatbelt/bubblewrap process isolation"
       },
       "assessment_check": "Verify untrusted tool/agent processes cannot write outside designated overlays or open unauthorized sockets.",
-      "pattern_refs": ["MCP-002", "MCP-008"]
+      "pattern_refs": [
+        "MCP-002",
+        "MCP-008"
+      ]
     },
     {
       "control_id": "SC-7",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Restrict outbound HTTP calls from agent tools to pre-configured upstream base URLs via injected connection pools, blocking arbitrary URL fetching and $ref SSRF.",
       "parameter_assignments": {
         "sc-07_odp.01": "lifespan-pooled httpx.AsyncClient pinned to server base_url; remote $ref URIs forbidden"
       },
       "assessment_check": "Verify tools cannot instantiate raw HTTP clients or resolve external URI references.",
-      "pattern_refs": ["MCP-004", "MCP-006"]
+      "pattern_refs": [
+        "MCP-004",
+        "MCP-006"
+      ]
     },
     {
       "control_id": "SC-5",
       "overlay_priority": "P2",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Enforce upstream request timeouts (<= 15s) and dual-axis 32 KiB structured output bounding to prevent stalled or runaway tool responses from wedging the agent loop.",
       "parameter_assignments": {
         "sc-05_odp.01": "15s upstream HTTP timeout + 32,768-byte dual-axis list/string response cap"
       },
       "assessment_check": "Simulate upstream timeout (HTTP 504/ReadTimeout) and 150 KiB list response; verify clean ToolError and bounded JSON.",
-      "pattern_refs": ["MCP-003", "MCP-006"]
+      "pattern_refs": [
+        "MCP-003",
+        "MCP-006"
+      ]
     },
     {
       "control_id": "IR-4",
       "overlay_priority": "P2",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Provide immediate credential revocation and stateless replica termination/circuit-breaking when an autonomous agent exhibits anomalous tool-call loops.",
       "parameter_assignments": {
         "ir-04_odp.01": "per-server scoped token rotation + stateless replica circuit-breaker"
       },
       "assessment_check": "Confirm revoking a server-bound env token immediately halts upstream access with actionable ToolError.",
-      "pattern_refs": ["MCP-001", "MCP-006"]
+      "pattern_refs": [
+        "MCP-001",
+        "MCP-006"
+      ]
     }
   ]
 }

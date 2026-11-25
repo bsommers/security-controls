@@ -1,5 +1,7 @@
 """NIST SP 800-53 Rev. 5 (Update 1) & COSIS Use-Case Security Controls Library."""
 
+from security_controls.assessor import assess_forge_bundle
+from security_controls.full_index import load_full_index
 from security_controls.loader import CatalogIntegrityError, ControlLibrary, load_library
 from security_controls.models import (
     ControlFamily,
@@ -25,8 +27,10 @@ __all__ = [
     "EffectiveControl",
     "ResolvedProfile",
     "TailoredControlRule",
+    "assess_forge_bundle",
     "build_oscal_profile",
     "build_pattern_crosswalk",
+    "load_full_index",
     "load_library",
     "resolve_effective_profile",
 ]

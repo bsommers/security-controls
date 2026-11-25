@@ -4,8 +4,25 @@
   "title": "COSIS Overlay: Using and Fine-Tuning Predictive SI",
   "source_url": "https://csrc.nist.gov/projects/cosis/use-cases",
   "provenance_tier": "nist_cosis_use_case_overlay",
+  "source_provenance": {
+    "upstream_cosis_source": {
+      "publication_status": "[NIST-DRAFT]",
+      "csrc_project_url": "https://csrc.nist.gov/projects/cosis/use-cases",
+      "use_case_designation": "UC-PRED: COSIS Overlay: Using and Fine-Tuning Predictive SI"
+    },
+    "organization_tailoring": {
+      "authority_id": "bsommers/secure-design-patterns@MCP-2026-07-28",
+      "pattern_catalog_url": "https://github.com/bsommers/secure-design-patterns/blob/main/patterns/mcp-serve/catalog.json",
+      "scope_note": "Maps MCP 2026-07-28 engineering invariants (MCP-001..008) onto SP 800-53r5 ODPs without claiming finalized federal COSIS mandate."
+    }
+  },
   "default_baseline": "moderate",
-  "cia_focus": ["integrity", "confidentiality", "availability", "privacy"],
+  "cia_focus": [
+    "integrity",
+    "confidentiality",
+    "availability",
+    "privacy"
+  ],
   "primary_risks": [
     "Training or fine-tuning data poisoning corrupting classification, scoring, or forecasting behavior",
     "Model inversion or membership inference exposing sensitive records from fine-tuning datasets",
@@ -16,16 +33,20 @@
     {
       "control_id": "SI-7",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Verify cryptographic SHA-256 digests of training/fine-tuning splits, feature schemas, and serialized model weights prior to training and serving.",
       "parameter_assignments": {
         "si-07_odp.01": "SHA-256 manifest verification on datasets, feature definitions, and model checkpoints"
       },
       "assessment_check": "Confirm tampered dataset shards or weight files fail pre-load digest verification.",
-      "pattern_refs": ["MCP-002"]
+      "pattern_refs": [
+        "MCP-002"
+      ]
     },
     {
       "control_id": "SR-4",
       "overlay_priority": "P1",
+      "source_tier": "nist_cosis_draft",
       "ai_tailoring_guidance": "Maintain end-to-end provenance records linking every fine-tuned predictive model version to its base model, training dataset snapshot, hyperparameters, and evaluation report.",
       "parameter_assignments": {
         "sr-04_odp.01": "signed model card + immutable dataset/commit lineage manifest"
@@ -36,36 +57,47 @@
     {
       "control_id": "MP-2",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Restrict read/write access to fine-tuning corpora, feature stores, and checkpoint buckets to dedicated pipeline service identities.",
       "parameter_assignments": {
         "mp-02_odp.01": "isolated RBAC-scoped object stores for raw training corpora and fine-tuned weights"
       },
       "assessment_check": "Verify interactive user and inference accounts lack write permissions on training datasets.",
-      "pattern_refs": ["MCP-001", "MCP-002"]
+      "pattern_refs": [
+        "MCP-001",
+        "MCP-002"
+      ]
     },
     {
       "control_id": "SI-10",
       "overlay_priority": "P1",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Enforce strict feature-vector type, range, nullability, and cardinality schemas at both fine-tuning ingestion and online inference time.",
       "parameter_assignments": {
         "si-10_odp.01": "strict numeric/categorical range and nullability validation on inference feature payloads"
       },
       "assessment_check": "Confirm out-of-range, NaN/Inf, or schema-mismatched feature payloads are rejected deterministically.",
-      "pattern_refs": ["MCP-004"]
+      "pattern_refs": [
+        "MCP-004"
+      ]
     },
     {
       "control_id": "PT-2",
       "overlay_priority": "P2",
+      "source_tier": "org_pattern_tailoring",
       "ai_tailoring_guidance": "Verify explicit authority and minimization before including PII or protected demographic attributes in fine-tuning datasets or prediction outputs.",
       "parameter_assignments": {
         "pt-02_odp.01": "documented PII authority check and feature-level minimization prior to fine-tuning"
       },
       "assessment_check": "Audit feature catalog against approved PII processing authorities.",
-      "pattern_refs": ["MCP-004"]
+      "pattern_refs": [
+        "MCP-004"
+      ]
     },
     {
       "control_id": "CA-7",
       "overlay_priority": "P2",
+      "source_tier": "nist_cosis_draft",
       "ai_tailoring_guidance": "Continuously monitor prediction score distributions, calibration metrics, and feature drift against holdout baselines to trigger re-evaluation or rollback.",
       "parameter_assignments": {
         "ca-07_odp.01": "automated feature/score distribution drift alerts and holdout calibration thresholds"

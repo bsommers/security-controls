@@ -1,6 +1,6 @@
 # Plan 01 — Research Spike: Upstream NIST OSCAL Ingestion, COSIS Draft Schema Alignment & Automated SP 800-53A Assessment (`Milestone M1`)
 
-- **Status:** `open` *(Next Active Milestone)*
+- **Status:** `done` *(Shipped in v1.1.0 — see [ADR-0001](../adr/0001-oscal-ingestion-and-attestation-boundary.md))*
 - **Milestone:** `M1 (v1.1.0 — Research Spike)` in [`../ROADMAP.md`](../ROADMAP.md)
 - **Timebox:** 3–5 focused engineering sessions
 - **Authoritative Anchors:**

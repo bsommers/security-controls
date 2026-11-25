@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "security-controls"
-version = "1.0.0"
+version = "1.1.0"
 description = "Machine-validated NIST SP 800-53 Rev. 5 (Update 1) Security Controls & COSIS (Control Overlays for Super Intelligence Systems) Use-Case Overlay Library with OSCAL 1.1.2 export."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -16,7 +16,10 @@ security-controls = "security_controls.cli:main"
 
 [dependency-groups]
 dev = [
+    "hypothesis>=6.112.0",
+    "jsonschema>=4.23.0",
     "mypy>=1.11.0",
+    "types-jsonschema>=4.23.0",
     "pytest>=8.3.0",
     "ruff>=0.8.0",
 ]

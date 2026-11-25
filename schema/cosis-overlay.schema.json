@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/bsommers/security-controls/schema/cosis-overlay.schema.json",
-  "title": "NistCosisUseCaseOverlay",
+  "title": "NistCosisUseCaseOverlayV2",
   "type": "object",
   "required": [
     "overlay_id",
@@ -9,6 +9,7 @@
     "title",
     "source_url",
     "provenance_tier",
+    "source_provenance",
     "default_baseline",
     "cia_focus",
     "primary_risks",
@@ -24,6 +25,33 @@
     "title": { "type": "string", "minLength": 10 },
     "source_url": { "type": "string", "const": "https://csrc.nist.gov/projects/cosis/use-cases" },
     "provenance_tier": { "type": "string", "const": "nist_cosis_use_case_overlay" },
+    "source_provenance": {
+      "type": "object",
+      "required": ["upstream_cosis_source", "organization_tailoring"],
+      "additionalProperties": false,
+      "properties": {
+        "upstream_cosis_source": {
+          "type": "object",
+          "required": ["publication_status", "csrc_project_url", "use_case_designation"],
+          "additionalProperties": false,
+          "properties": {
+            "publication_status": { "type": "string", "const": "[NIST-DRAFT]" },
+            "csrc_project_url": { "type": "string", "const": "https://csrc.nist.gov/projects/cosis/use-cases" },
+            "use_case_designation": { "type": "string", "minLength": 10 }
+          }
+        },
+        "organization_tailoring": {
+          "type": "object",
+          "required": ["authority_id", "pattern_catalog_url", "scope_note"],
+          "additionalProperties": false,
+          "properties": {
+            "authority_id": { "type": "string", "const": "bsommers/secure-design-patterns@MCP-2026-07-28" },
+            "pattern_catalog_url": { "type": "string", "const": "https://github.com/bsommers/secure-design-patterns/blob/main/patterns/mcp-serve/catalog.json" },
+            "scope_note": { "type": "string", "minLength": 15 }
+          }
+        }
+      }
+    },
     "default_baseline": { "type": "string", "enum": ["low", "moderate", "high"] },
     "cia_focus": {
       "type": "array",
@@ -43,6 +71,7 @@
         "required": [
           "control_id",
           "overlay_priority",
+          "source_tier",
           "ai_tailoring_guidance",
           "parameter_assignments",
           "assessment_check",
@@ -52,6 +81,10 @@
         "properties": {
           "control_id": { "type": "string", "pattern": "^[A-Z]{2}-\\d+(\\(\\d+\\))?$" },
           "overlay_priority": { "type": "string", "enum": ["P1", "P2"] },
+          "source_tier": {
+            "type": "string",
+            "enum": ["nist_sp800_53b", "nist_cosis_draft", "org_pattern_tailoring"]
+          },
           "ai_tailoring_guidance": { "type": "string", "minLength": 20 },
           "parameter_assignments": {
             "type": "object",

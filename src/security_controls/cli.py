@@ -6,6 +6,8 @@ import argparse
 import json
 from pathlib import Path
 
+from security_controls.assessor import assess_forge_bundle
+from security_controls.full_index import load_full_index
 from security_controls.loader import load_library
 from security_controls.oscal import build_oscal_profile
 from security_controls.resolver import build_pattern_crosswalk, resolve_effective_profile
@@ -19,6 +21,10 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     sub.add_parser("summary", help="Print catalog counts and registered COSIS use cases.")
+    sub.add_parser(
+        "index-stats",
+        help="Print full 1,189-control NIST SP 800-53 Rev. 5.1.1 index statistics and load time.",
+    )
 
     res_p = sub.add_parser("resolve", help="Resolve baseline + COSIS overlay controls.")
     res_p.add_argument(
@@ -41,6 +47,13 @@ def build_parser() -> argparse.ArgumentParser:
     osc_p.add_argument("--output", type=Path, default=None)
 
     sub.add_parser("crosswalk", help="Print MCP-001..008 -> NIST SP 800-53r5 crosswalk JSON.")
+
+    ass_p = sub.add_parser(
+        "assess-forge",
+        help="Run deterministic SP 800-53A control evaluation on a forged MCP bundle.",
+    )
+    ass_p.add_argument("--manifest", type=Path, required=True)
+    ass_p.add_argument("--release-artifacts", type=Path, required=True)
     return parser
 
 
@@ -49,15 +62,38 @@ def main(argv: list[str] | None = None) -> int:
     lib = load_library()
 
     if args.command == "summary":
+        full_idx = load_full_index(lib.root_dir)
         payload = {
             "standard": "NIST-SP-800-53-R5-UPD1",
+            "version": full_idx.version,
             "families": len(lib.families),
             "controls": len(lib.controls),
+            "upstream_total_controls": full_idx.total_controls_and_enhancements,
+            "upstream_active_controls": full_idx.active_count,
             "cosis_use_cases": [
                 {"id": uc.id, "official_name": uc.official_name} for uc in lib.use_cases.values()
             ],
         }
         print(json.dumps(payload, indent=2))
+        return 0
+
+    if args.command == "index-stats":
+        full_idx = load_full_index(lib.root_dir)
+        print(
+            json.dumps(
+                {
+                    "version": full_idx.version,
+                    "upstream_oscal_version": full_idx.upstream_oscal_version,
+                    "total_controls_and_enhancements": full_idx.total_controls_and_enhancements,
+                    "base_controls": full_idx.base_control_count,
+                    "enhancements": full_idx.enhancement_count,
+                    "active_controls": full_idx.active_count,
+                    "withdrawn_controls": full_idx.withdrawn_count,
+                    "load_ms": round(full_idx.load_ms, 2),
+                },
+                indent=2,
+            )
+        )
         return 0
 
     if args.command == "resolve":
@@ -106,6 +142,28 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "crosswalk":
         print(json.dumps(build_pattern_crosswalk(lib), indent=2))
+        return 0
+
+    if args.command == "assess-forge":
+        manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+        rel = json.loads(args.release_artifacts.read_text(encoding="utf-8"))
+        findings = assess_forge_bundle(lib, manifest, rel)
+        print(
+            json.dumps(
+                [
+                    {
+                        "control_id": f.control_id,
+                        "oscal_id": f.oscal_id,
+                        "priority": f.priority,
+                        "state": f.state,
+                        "assessor_type": f.assessor_type,
+                        "evidence_summary": f.evidence_summary,
+                    }
+                    for f in findings
+                ],
+                indent=2,
+            )
+        )
         return 0
 
     return 1
